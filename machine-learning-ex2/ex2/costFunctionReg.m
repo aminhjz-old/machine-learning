@@ -22,7 +22,7 @@ theta_rest=theta([2:length(theta)]);
 X_1=X(:,1);
 X_rest=X(:,[2:size(X)(2)]);
 
-J = (-y'*log(sigmoid(X*theta)) - (1-y')*log(1 - sigmoid(X*theta)))/m + (lambda/(2*m))*sum(theta.^2)
+J = (-y'*log(sigmoid(X*theta)) - (1-y')*log(1 - sigmoid(X*theta)))/m + (lambda/(2*m))*sum(theta_rest.^2)
 
 grad_1 = (sigmoid(X*theta) - y)'*X_1/m;
 grad_rest =(sigmoid(X*theta) - y)'*X_rest/m + (lambda/m)*theta_rest'
