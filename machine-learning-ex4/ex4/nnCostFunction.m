@@ -97,9 +97,9 @@ end
 
 %Implementing regularization
 
-Theta1R=Theta1(:,2:length(Theta1));
+Theta1R=Theta1(:,2:input_layer_size+1);
 
-Theta2R=Theta2(:,2:length(Theta2));
+Theta2R=Theta2(:,2:hidden_layer_size+1);
 
 J = J + (lambda/(2*m))*(sum(sum(Theta1R.^2)) + sum(sum(Theta2R.^2)));
 
