@@ -65,17 +65,34 @@ Theta2_grad = zeros(size(Theta2));
 
 
 
+X = [ones(m, 1) X];
+
+num_labels = max(y);
+
+% initialize y_vec
+y_vec = zeros(m,num_labels);
 
 
+for i = 1:m
+  y_vec(i, y(i)) = 1;
+end
+
+z_2 = X*Theta1';
+a_2 = sigmoid(z_2);
 
 
+% Add ones to the a_2 data matrix
+a_2 = [ones(m, 1) a_2];
 
+z_3 = a_2*Theta2';
+a_3 = sigmoid(z_3);
 
-
-
-
-
-
+J = 0;
+for i = 1:m
+    y_i = y_vec(i,:);
+    h_i = a_3(i,:);
+    J += (-y_i*log(h_i') - (1 - y_i)*log(1 - h_i'))/m;
+end
 
 
 
