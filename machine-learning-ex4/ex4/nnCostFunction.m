@@ -97,13 +97,11 @@ end
 
 %Implementing regularization
 
-Theta1_first=Theta1(:,1);
-Theta1_rest=Theta1(:,2:length(Theta1));
+Theta1R=Theta1(:,2:length(Theta1));
 
-Theta2_first=Theta2(:,1);
-Theta2_rest=Theta2(:,2:length(Theta2));
+Theta2R=Theta2(:,2:length(Theta2));
 
-J = J + (lambda/(2*m))*(sum(sum(Theta1_rest.^2)) + sum(sum(Theta2_rest.^2)));
+J = J + (lambda/(2*m))*(sum(sum(Theta1R.^2)) + sum(sum(Theta2R.^2)));
 
 % -------------------------------------------------------------
 
