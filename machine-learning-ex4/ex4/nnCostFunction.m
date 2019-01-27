@@ -64,7 +64,7 @@ Theta2_grad = zeros(size(Theta2));
 
 
 
-
+a_1 = X;
 X = [ones(m, 1) X];
 
 num_labels = max(y);
@@ -102,6 +102,19 @@ Theta1R=Theta1(:,2:input_layer_size+1);
 Theta2R=Theta2(:,2:hidden_layer_size+1);
 
 J = J + (lambda/(2*m))*(sum(sum(Theta1R.^2)) + sum(sum(Theta2R.^2)));
+
+%Implementing backprop
+
+d_3 = a_3 - y_vec;
+
+
+d_2 = (Theta2'*d_3')(2:hidden_layer_size+1,:)'.*sigmoidGradient(z_2);
+
+
+Theta2_grad = (d_3'*a_2)/m;
+
+Theta1_grad = (d_2'*X)/m;
+
 
 % -------------------------------------------------------------
 
