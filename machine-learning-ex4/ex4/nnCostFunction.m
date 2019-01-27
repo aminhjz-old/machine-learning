@@ -111,9 +111,31 @@ d_3 = a_3 - y_vec;
 d_2 = (Theta2'*d_3')(2:hidden_layer_size+1,:)'.*sigmoidGradient(z_2);
 
 
+
+
 Theta2_grad = (d_3'*a_2)/m;
 
 Theta1_grad = (d_2'*X)/m;
+
+% Regularized
+
+Theta1_grad_one = Theta1_grad(:,1);
+Theta1_grad_rest = Theta1_grad(:,2:input_layer_size+1);
+Theta1_one = Theta1(:,1);
+Theta1_rest = Theta1(:,2:input_layer_size+1);
+
+Theta1_grad_rest = Theta1_grad_rest + (lambda/m)*Theta1_rest;
+Theta1_grad = [Theta1_grad_one Theta1_grad_rest];
+
+
+
+Theta2_grad_one = Theta2_grad(:,1);
+Theta2_grad_rest = Theta2_grad(:,2:hidden_layer_size+1);
+Theta2_one = Theta2(:,1);
+Theta2_rest = Theta2(:,2:hidden_layer_size+1);
+
+Theta2_grad_rest = Theta2_grad_rest + (lambda/m)*Theta2_rest;
+Theta2_grad = [Theta2_grad_one Theta2_grad_rest];
 
 
 % -------------------------------------------------------------
