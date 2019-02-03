@@ -20,12 +20,15 @@ grad = zeros(size(theta));
 %
 
 thetaRest = theta(2:length(theta),:);
-thetaOne = theta(1,:);
 
+% lambda = 1;
+% X = [ones(m, 1) X];
 J = sum(((X*theta)-y).^2)/(2*m) +  sum(thetaRest.^2)*lambda/(2*m);
 
-
-
+thetaGrad = theta;
+thetaGrad(1, :) = 0;
+thetaGrad = lambda*thetaGrad/m;
+grad = (((X*theta)-y)'*X)'/m + thetaGrad;
 
 
 
